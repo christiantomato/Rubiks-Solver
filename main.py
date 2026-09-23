@@ -4,7 +4,7 @@ from ursina import *
 app = Ursina()
 
 #create a demo entity
-cube = Entity(model='cube', color=color.red, scale=1)
+cube = Entity(model='cube', color=color.pink, scale=1)
 
 #enable the camera
 EditorCamera()
