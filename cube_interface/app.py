@@ -1,3 +1,7 @@
+#new update broke audio (not that we need it)
+from panda3d.core import loadPrcFileData
+loadPrcFileData("", "audio-library-name null")
+
 from ursina import *
 from itertools import product
 
