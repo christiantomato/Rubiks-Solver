@@ -1,4 +1,4 @@
-from ursina import Entity, Vec3, color
+from ursina import *
 from corner import Corner
 from itertools import product
 import constants
@@ -44,3 +44,42 @@ class Cube:
             self.corners.append(
                 Corner(corner_entity, sticker_entities, coordinates, constants.corner_indices[coordinates])
             )
+
+    def _turn(self, axis, sign, angle): 
+
+        """Turns the 4 selected corners of the cube."""
+
+        #select the corners on the face 
+        selected = [c for c in self.corners if c.position[axis] * sign > 0]
+
+        #group them under a pivot at the origin
+        pivot = Entity() 
+        for c in selected: 
+            c.entity.world_parent = pivot
+
+        #rotate the pivot about the turns axis with specified angle 
+        if axis == 0: 
+            pivot.rotation_x = angle
+        elif axis == 1: 
+            pivot.rotation_y = angle 
+        elif axis == 2: 
+            pivot.rotation_z = angle
+
+        #detach 
+        for c in selected:
+            c.entity.world_parent = scene
+            c.position = tuple(round(v * 2) / 2 for v in c.entity.world_position)
+            c.entity.position = c.position
+        destroy(pivot)
+
+    """
+    Every type of turn.
+    """
+
+    def R(self): 
+        self._turn(0, 1, 90) 
+
+    def L(self): 
+        self._turn(0, -1, -90)
+
+
