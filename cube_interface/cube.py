@@ -76,10 +76,38 @@ class Cube:
     Every type of turn.
     """
 
+    def U(self): 
+        self._turn(1, 1, 90)
+
+    def U_prime(self):
+        self._turn(1, 1, -90) 
+
+    def D(self): 
+        self._turn(1, -1, -90)
+
+    def D_prime(self): 
+        self._turn(1, -1, 90)
+
+    def F(self): 
+        self._turn(2, -1, 90)
+
+    def F_prime(self):
+        self._turn(2, -1, -90) 
+
+    def B(self): 
+        self._turn(2, 1, -90)
+
+    def B_prime(self): 
+        self._turn(2, 1, 90)
+
     def R(self): 
-        self._turn(0, 1, 90) 
+        self._turn(0, 1, 90)
+
+    def R_prime(self):
+        self._turn(0, 1, -90) 
 
     def L(self): 
         self._turn(0, -1, -90)
 
-
+    def L_prime(self): 
+        self._turn(0, -1, 90)
