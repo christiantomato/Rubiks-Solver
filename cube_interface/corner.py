@@ -10,9 +10,9 @@ class Corner:
         corner_index (int): corresponds to which piece this corner actually is in the backend (DFR, DFL, etc.)
     """
 
-    def __init__(self, corner_entity, sticker_entities, position, corner_index):
+    def __init__(self, entity, sticker_entities, position, corner_index):
         #assign attributes
-        self.corner_entity = corner_entity 
+        self.entity = entity 
         self.sticker_entities = sticker_entities
         self.position = position 
         self.corner_index = corner_index
