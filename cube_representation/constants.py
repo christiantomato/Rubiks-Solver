@@ -8,42 +8,42 @@ the 2 representations (Ex. after an R move, a U move is no longer a U move on th
 This is a bijective mapping from frontend frame -> state frame. 
 """
 
-U_map = {'R': 'B', 
+U_MAP = {'R': 'B', 
          'L': 'F', 
          'U': 'U', 
          'D': 'D', 
          'B': 'L', 
          'F': 'R'}
 
-U_inv_map = {'R': 'F', 
+U_INV_MAP = {'R': 'F', 
              'L': 'B', 
              'U': 'U', 
              'D': 'D', 
              'B': 'R', 
              'F': 'L'}
 
-F_map = {'R': 'U', 
+F_MAP = {'R': 'U', 
          'L': 'D', 
          'U': 'L', 
          'D': 'R', 
          'B': 'B', 
          'F': 'F'}
 
-F_inv_map = {'R': 'D', 
+F_INV_MAP = {'R': 'D', 
              'L': 'U', 
              'U': 'R', 
              'D': 'L', 
              'B': 'B', 
              'F': 'F'}
 
-R_map = {'R': 'R', 
+R_MAP = {'R': 'R', 
          'L': 'L', 
          'U': 'F', 
          'D': 'B', 
          'B': 'U', 
          'F': 'D'}
 
-R_inv_map = {'R': 'R', 
+R_INV_MAP = {'R': 'R', 
              'L': 'L', 
              'U': 'B', 
              'D': 'F', 
