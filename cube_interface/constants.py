@@ -30,7 +30,7 @@ UBL = 6
 """
 
 #rotation dictionary (based on the axis and sign)
-rotation = {(0, 1): (0, -90, 0),
+ROTATION = {(0, 1): (0, -90, 0),
           (0, -1): (0, 90, 0),
           (1, 1): (90, 0, 0),
           (1, -1): (-90, 0, 0), 
@@ -39,7 +39,7 @@ rotation = {(0, 1): (0, -90, 0),
         }
 
 #colors dictionary (also based on axis and sign)
-colors = {(0, 1): color.red,
+COLORS = {(0, 1): color.red,
           (0, -1): color.orange,
           (1, 1): color.white,
           (1, -1): color.yellow, 
@@ -48,7 +48,7 @@ colors = {(0, 1): color.red,
           }
 
 #corner index dictionary (based on position)
-corner_indices = {(0.5, -0.5, -0.5): 0,
+CORNER_INDICES = {(0.5, -0.5, -0.5): 0,
                 (-0.5, -0.5, -0.5): 1,
                 (-0.5, 0.5, -0.5): 2,
                 (0.5, 0.5, 0.5): 3, 
@@ -57,3 +57,9 @@ corner_indices = {(0.5, -0.5, -0.5): 0,
                 (-0.5, 0.5, 0.5): 6,
                 (0.5, 0.5, -0.5): -1
                 }
+
+#constants for inputs
+MOVES = ["U", "U'", "D", "D'", "F", "F'", "B", "B'", "R", "R'", "L", "L'"]
+KEYS = {"u": "U", "d": "D", "f": "F", "b": "B", "r": "R", "l": "L"}
+NORMAL_SPEED = 0.75
+SCRAMBLE_SPEED = 0.25

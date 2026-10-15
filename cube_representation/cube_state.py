@@ -34,7 +34,6 @@ class CubeState:
     UBL = 6
 
     def __init__(self):
-
         """Initializes a solved 2x2 cube."""
 
         #initalize the solved state
@@ -42,7 +41,8 @@ class CubeState:
         self.orientations = [0, 0, 0, 0, 0, 0, 0]
 
     def apply_move(self, move):
-        """Applies a move to the cube. 
+        """
+        Applies a move to the cube. 
 
         Since we always fix our orientation so that the UFR corner is always in the UFR location,
         moves affecting the UFR like U perform a correction rotation.
