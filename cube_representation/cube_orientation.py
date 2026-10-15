@@ -53,17 +53,17 @@ class CubeOrientation:
         #otherwise, compose the mapping
         match translated_move: 
             case "U": 
-                self._compose(constants.U_map)
+                self._compose(constants.U_MAP)
             case "U'":
-                self._compose(constants.U_inv_map)
+                self._compose(constants.U_INV_MAP)
             case "F": 
-                self._compose(constants.F_map)
+                self._compose(constants.F_MAP)
             case "F'":
-                self._compose(constants.F_inv_map)
+                self._compose(constants.F_INV_MAP)
             case "R": 
-                self._compose(constants.R_map)
+                self._compose(constants.R_MAP)
             case "R'": 
-                self._compose(constants.R_inv_map)
+                self._compose(constants.R_INV_MAP)
             case _: 
                 print("not a valid move.")
 
