@@ -1,7 +1,7 @@
-from cube_representation.cube_state import Cube2x2
+from cube_representation.cube_state import CubeState
 
 def test():
-    cube = Cube2x2()
+    cube = CubeState()
 
     cube.apply_move("R")
     cube.apply_move("U")

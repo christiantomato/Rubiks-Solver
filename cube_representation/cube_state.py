@@ -1,4 +1,4 @@
-class Cube2x2:
+class CubeState:
 
     """Represents the state of the 2x2 cube.
 
