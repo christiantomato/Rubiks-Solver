@@ -1,4 +1,4 @@
-from cube2x2 import Cube2x2
+from cube_representation.cube_state import Cube2x2
 
 def test():
     cube = Cube2x2()
