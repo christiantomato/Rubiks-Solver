@@ -9,7 +9,7 @@ Goal: Use machine learning to solve Rubiks Cubes
 - [x] Create the 3D model of the cube on the frontend. 
 - [x] Create move animations
 - [x] Add cube scrambling.
-- [ ] Reconcile with backend state.
+- [x] Reconcile with backend state.
 
 ### 2x2 Learning
 - [ ] Train a neural network to find the optimal solution...

@@ -1,6 +1,7 @@
 class CubeState:
 
-    """Represents the state of the 2x2 cube.
+    """
+    Represents the state of the 2x2 cube.
 
     This definition captures every canonical state of the 2x2 cube.
 
@@ -57,7 +58,7 @@ class CubeState:
 
         Args:
             move (str): The move to apply. Must be one of:
-            U, U', D, D', F, F', B, B', R, R', L, L'
+            {U, U', D, D', F, F', B, B', R, R', L, L'}
         """
 
         match move:

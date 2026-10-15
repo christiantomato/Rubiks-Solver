@@ -59,7 +59,6 @@ CORNER_INDICES = {(0.5, -0.5, -0.5): 0,
                 }
 
 #constants for inputs
-MOVES = ["U", "U'", "D", "D'", "F", "F'", "B", "B'", "R", "R'", "L", "L'"]
 KEYS = {"u": "U", "d": "D", "f": "F", "b": "B", "r": "R", "l": "L"}
 NORMAL_SPEED = 0.4
 SCRAMBLE_SPEED = 0.2

@@ -5,31 +5,49 @@ loadPrcFileData("", "audio-library-name null")
 from ursina import *
 from cube_interface.cube import Cube
 from cube_representation.cube_state import CubeState
-import cube_interface.constants as constants
+from cube_representation.cube_orientation import CubeOrientation
+import cube_interface.constants as interface_constants
+import cube_representation.constants as representation_constants
 
 #create the app and enable camera
 app = Ursina()
 EditorCamera()
 
-#init our cube and cube state
+#init our cube, cube state, and orientation tracker
 cube = Cube()
-state = CubeState() 
+state = CubeState()
+orientation = CubeOrientation()
 
 def apply_move(move, speed):
-    """Applies moves to the cube state and frontend."""
+    """
+    Applies moves to the cube state and frontend.
+    
+    Args: 
+        move (str): The move. 
+        speed (float): The animation speed.
+    """
 
     cube.queue_move(move, speed)
-    state.apply_move(move)
+    state.apply_move(orientation.translate(move))
 
-    #test internal representnation
+    #test internal representation
     print(state.permutations)
     print(state.orientations)
+    print("\n")
 
 def scramble(n=20):
     """Scrambles the cube with 20 random moves."""
 
+    scramble = []
+
     for _ in range(n):
-        apply_move(random.choice(constants.MOVES), constants.SCRAMBLE_SPEED)
+        random_move = random.choice(representation_constants.MOVES)
+        scramble.append(random_move) #save the scramble
+        apply_move(random_move, interface_constants.SCRAMBLE_SPEED)
+
+    #output the scramble
+    print("scramble: ")
+    print(scramble)
 
 def input(key):
     """Handles inputs."""
@@ -42,15 +60,10 @@ def input(key):
         else:
             #SOLVE WILL GO HERE
             pass  
-    elif key in constants.KEYS:
+    elif key in interface_constants.KEYS:
         #determine if prime and apply move
-        move = constants.KEYS[key] + ("'" if shift else "")
-        apply_move(move, constants.NORMAL_SPEED)
-
-
-
-
-
+        move = interface_constants.KEYS[key] + ("'" if shift else "")
+        apply_move(move, interface_constants.NORMAL_SPEED)
 
 #run
 app.run()

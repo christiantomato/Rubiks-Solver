@@ -1,8 +1,9 @@
 from ursina import *
 from itertools import product
 from collections import deque
+from cube_interface import constants
 from cube_interface.corner import Corner
-import cube_interface.constants as constants
+
 
 class Cube: 
 
@@ -49,7 +50,12 @@ class Cube:
             )
 
     def queue_move(self, move, turn_speed): 
-        """Queues a move to be done on the cube since it needs to be animated, then plays next move in queue."""
+        """Queues a move to be done on the cube since it needs to be animated, then plays next move in queue.
+
+        Args: 
+            move (str): The move to queue.
+            turn_speed (float): Speed of the animation.
+        """
         
         self.move_queue.append((move, turn_speed))
         self._play_next()
@@ -69,7 +75,8 @@ class Cube:
     
             Args:
                 move (str): The move to apply. Must be one of:
-                U, U', D, D', F, F', B, B', R, R', L, L'
+                {U, U', D, D', F, F', B, B', R, R', L, L'}
+                turn_speed (int): Speed of the animation.
             """
     
             match move:
@@ -101,7 +108,15 @@ class Cube:
                     print("not a valid move.")
 
     def _turn(self, axis, sign, angle, duration): 
-            """Turns the 4 selected corners of the cube."""
+            """
+            Turns the 4 selected corners of the cube.
+            
+            Args:
+                axis (int): The axis we are turning about.
+                sign (int): Either the positive or negative side of the axis.
+                angle (int): 90 or -90 degrees based on the direction of the turn. 
+                duration (float): The duration of the turn animation. 
+            """
     
             if self.turning: 
                 return 
@@ -123,7 +138,13 @@ class Cube:
             invoke(self._finish_turn, selected, pivot, delay=duration + 0.05)
     
     def _finish_turn(self, selected, pivot): 
-        """Concludes a turn."""
+        """
+        Concludes a turn.
+        
+        Args: 
+            selected (list(Corner)): The corners which were affected by the turn. 
+            pivot (Entity): The temp entity at the origin which we rotated about. 
+        """
 
         #detach and round for float inaccuracies
         for c in selected:
