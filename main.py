@@ -38,8 +38,16 @@ def apply_move(move, speed):
 def scramble(n=20):
     """Scrambles the cube with 20 random moves."""
 
+    scramble = []
+
     for _ in range(n):
-        apply_move(random.choice(representation_constants.MOVES), interface_constants.SCRAMBLE_SPEED)
+        random_move = random.choice(representation_constants.MOVES)
+        scramble.append(random_move) #save the scramble
+        apply_move(random_move, interface_constants.SCRAMBLE_SPEED)
+
+    #output the scramble
+    print("scramble: ")
+    print(scramble)
 
 def input(key):
     """Handles inputs."""
