@@ -1,5 +1,5 @@
 #python environment
-venv
+.venv
 
 #py cache
 __pycache__
