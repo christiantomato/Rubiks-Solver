@@ -21,6 +21,10 @@ def apply_move(move, speed):
     cube.queue_move(move, speed)
     state.apply_move(move)
 
+    #test internal representnation
+    print(state.permutations)
+    print(state.orientations)
+
 def scramble(n=20):
     """Scrambles the cube with 20 random moves."""
 
