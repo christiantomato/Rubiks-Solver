@@ -1,4 +1,4 @@
-from ursina import color
+from ursina.color import rgb
 
 """
 Ursina Camera Coordinate System:
@@ -38,13 +38,23 @@ ROTATION = {(0, 1): (0, -90, 0),
           (2, -1): (0, 0, 0)
         }
 
+#LIAHS COLORS:
+#COLORS = {(0, 1): rgb(250, 102, 120),
+#          (0, -1): rgb(250, 145, 65),
+#          (1, 1): rgb(252, 250, 250),
+#          (1, -1): rgb(252, 244, 151), 
+#          (2, 1): rgb(159, 237, 252), 
+#          (2, -1): rgb(148, 247, 157)
+#          }
+
 #colors dictionary (also based on axis and sign)
-COLORS = {(0, 1): color.red,
-          (0, -1): color.orange,
-          (1, 1): color.white,
-          (1, -1): color.yellow, 
-          (2, 1): color.blue, 
-          (2, -1): color.green
+
+COLORS = {(0, 1): rgb(250, 102, 120),
+          (0, -1): rgb(250, 145, 65),
+          (1, 1): rgb(230, 230, 230),
+          (1, -1): rgb(252, 244, 151), 
+          (2, 1): rgb(159, 237, 252), 
+          (2, -1): rgb(148, 247, 157)
           }
 
 #corner index dictionary (based on position)

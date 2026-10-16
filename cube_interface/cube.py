@@ -24,7 +24,7 @@ class Cube:
 
         #iterate over the 8 possible coordinate positions (x, y, z) where each coordinate belongs to {-0.5, 0.5}
         for coordinates in product((0.5, -0.5), repeat=3):
-            corner_entity = Entity(position=coordinates, model='cube', color=color.black, scale=1)
+            corner_entity = Entity(position=coordinates, model='cube', color=color.white, scale=1)
             sticker_entities = []
 
             #loop through the axes to assign stickers for the cubie
