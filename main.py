@@ -1,4 +1,4 @@
-#new update broke audio (not that we need)
+#(audio is just breaking everything)
 from panda3d.core import loadPrcFileData
 loadPrcFileData("", "audio-library-name null")
 
@@ -9,11 +9,7 @@ from cube_representation.cube_orientation import CubeOrientation
 import cube_interface.constants as interface_constants
 import cube_representation.constants as representation_constants
 
-#create the app and enable camera
-app = Ursina()
-EditorCamera()
-
-#init our cube, cube state, and orientation tracker
+#init our frontend cube, cube state, and orientation tracker
 cube = Cube()
 state = CubeState()
 orientation = CubeOrientation()
@@ -21,16 +17,16 @@ orientation = CubeOrientation()
 def apply_move(move, speed):
     """
     Applies moves to the cube state and frontend.
-    
-    Args: 
-        move (str): The move. 
-        speed (float): The animation speed.
+
+    Args:
+        move (str): The move.
+        speed (float): The turn speed.
     """
 
     cube.queue_move(move, speed)
     state.apply_move(orientation.translate(move))
 
-    #test internal representation
+    #print internal representation after move
     print(state.permutations)
     print(state.orientations)
     print("\n")
@@ -50,7 +46,7 @@ def scramble(n=20):
     print(scramble)
 
 def input(key):
-    """Handles inputs."""
+    """Ursina function to handle inputs."""
 
     shift = held_keys['shift']
 
@@ -59,11 +55,20 @@ def input(key):
             scramble()
         else:
             #SOLVE WILL GO HERE
-            pass  
+            pass
     elif key in interface_constants.KEYS:
         #determine if prime and apply move
         move = interface_constants.KEYS[key] + ("'" if shift else "")
         apply_move(move, interface_constants.NORMAL_SPEED)
 
-#run
-app.run()
+
+#guard so code only runs when main running
+if __name__ == "__main__":
+
+    #create the app and enable camera
+    app = Ursina()
+    EditorCamera()
+
+    #run
+    app.run()
+    
