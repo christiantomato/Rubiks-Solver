@@ -43,7 +43,7 @@ class CubeState:
 
     def apply_move(self, move):
         """
-        Applies a move to the cube. 
+        Applies a move to the cube.
 
         Since we always fix our orientation so that the UFR corner is always in the UFR location,
         moves affecting the UFR like U perform a correction rotation.
@@ -54,11 +54,10 @@ class CubeState:
 
         And since our states do not encode rotations like y', U = D are equivalent in the representation.
 
-        Therefore {D, B, L} is a generator for the group. 
+        Therefore {D, B, L} is a generator for the group.
 
         Args:
-            move (str): The move to apply. Must be one of:
-            {U, U', D, D', F, F', B, B', R, R', L, L'}
+            move (str): The move to apply. Must be one of: {U, U', D, D', F, F', B, B', R, R', L, L'}
         """
 
         match move:
@@ -66,9 +65,9 @@ class CubeState:
                 self._D()
             case "U'" | "D'":
                 self._D_prime()
-            case "F" | "B": 
+            case "F" | "B":
                 self._B()
-            case "F'" | "B'": 
+            case "F'" | "B'":
                 self._B_prime()
             case "R" | "L":
                 self._L()
@@ -78,39 +77,39 @@ class CubeState:
                 print("not a valid move.")
 
     """
-    D corner cycle: DFR -> DBR -> DBL -> DFL -> DFR 
+    D corner cycle: DFR -> DBR -> DBL -> DFL -> DFR
     D' corner cycle: DFR <- DBR <- DBL <- DFL <- DFR
     """
 
     def _D(self):
         #save the corner and its orientation for ecah location that is affected by this cycle
-        dfr_c = self.permutations[self.DFR] 
+        dfr_c = self.permutations[self.DFR]
         dbr_c = self.permutations[self.DBR]
-        dbl_c = self.permutations[self.DBL] 
+        dbl_c = self.permutations[self.DBL]
         dfl_c = self.permutations[self.DFL]
-        dfr_o = self.orientations[self.DFR] 
-        dbr_o = self.orientations[self.DBR] 
-        dbl_o = self.orientations[self.DBL] 
+        dfr_o = self.orientations[self.DFR]
+        dbr_o = self.orientations[self.DBR]
+        dbl_o = self.orientations[self.DBL]
         dfl_o = self.orientations[self.DFL]
         #assign them their new location (no orientation changing since we are in UD)
         self.permutations[self.DFR] = dfl_c
         self.permutations[self.DBR] = dfr_c
         self.permutations[self.DBL] = dbr_c
-        self.permutations[self.DFL] = dbl_c 
+        self.permutations[self.DFL] = dbl_c
         self.orientations[self.DFR] = dfl_o
         self.orientations[self.DBR] = dfr_o
         self.orientations[self.DBL] = dbr_o
-        self.orientations[self.DFL] = dbl_o 
-    
+        self.orientations[self.DFL] = dbl_o
+
     def _D_prime(self):
         #save the corner and its orientation for ecah location that is affected by this cycle
-        dfr_c = self.permutations[self.DFR] 
+        dfr_c = self.permutations[self.DFR]
         dbr_c = self.permutations[self.DBR]
-        dbl_c = self.permutations[self.DBL] 
+        dbl_c = self.permutations[self.DBL]
         dfl_c = self.permutations[self.DFL]
-        dfr_o = self.orientations[self.DFR] 
-        dbr_o = self.orientations[self.DBR] 
-        dbl_o = self.orientations[self.DBL] 
+        dfr_o = self.orientations[self.DFR]
+        dbr_o = self.orientations[self.DBR]
+        dbl_o = self.orientations[self.DBL]
         dfl_o = self.orientations[self.DFL]
         #assign them their new location (no orientation changing since we are in UD)
         self.permutations[self.DFR] = dbr_c
@@ -123,7 +122,7 @@ class CubeState:
         self.orientations[self.DFL] = dfr_o
 
     """
-    L corner cycle: UFL -> DFL -> DBL -> UBL -> UFL 
+    L corner cycle: UFL -> DFL -> DBL -> UBL -> UFL
     L' corner cycle: UFL <- DFL <- DBL <- UBL <- UFL
     """
 
@@ -135,19 +134,19 @@ class CubeState:
         ubl_c = self.permutations[self.UBL]
         ufl_o = self.orientations[self.UFL]
         dfl_o = self.orientations[self.DFL]
-        dbl_o = self.orientations[self.DBL] 
+        dbl_o = self.orientations[self.DBL]
         ubl_o = self.orientations[self.UBL]
         #assign them their new location
         self.permutations[self.UFL] = ubl_c
         self.permutations[self.DFL] = ufl_c
         self.permutations[self.DBL] = dfl_c
-        self.permutations[self.UBL] = dbl_c 
+        self.permutations[self.UBL] = dbl_c
         #assign them their new orientations
         self.orientations[self.UFL] = (ubl_o + 1) % 3
         self.orientations[self.DFL] = (ufl_o + 2) % 3
         self.orientations[self.DBL] = (dfl_o + 1) % 3
         self.orientations[self.UBL] = (dbl_o + 2) % 3
-    
+
     def _L_prime(self):
         #save the corner and its orientation for each location that is affected by this cycle.
         ufl_c = self.permutations[self.UFL]
@@ -156,13 +155,13 @@ class CubeState:
         ubl_c = self.permutations[self.UBL]
         ufl_o = self.orientations[self.UFL]
         dfl_o = self.orientations[self.DFL]
-        dbl_o = self.orientations[self.DBL] 
+        dbl_o = self.orientations[self.DBL]
         ubl_o = self.orientations[self.UBL]
         #assign them their new location
         self.permutations[self.UFL] = dfl_c
         self.permutations[self.DFL] = dbl_c
         self.permutations[self.DBL] = ubl_c
-        self.permutations[self.UBL] = ufl_c 
+        self.permutations[self.UBL] = ufl_c
         #assign them their new orientations
         self.orientations[self.UFL] = (dfl_o - 2) % 3
         self.orientations[self.DFL] = (dbl_o - 1) % 3
@@ -182,19 +181,19 @@ class CubeState:
         dbr_c = self.permutations[self.DBR]
         ubr_o = self.orientations[self.UBR]
         ubl_o = self.orientations[self.UBL]
-        dbl_o = self.orientations[self.DBL] 
+        dbl_o = self.orientations[self.DBL]
         dbr_o = self.orientations[self.DBR]
         #assign them their new location
         self.permutations[self.UBR] = dbr_c
-        self.permutations[self.UBL] = ubr_c 
-        self.permutations[self.DBL] = ubl_c 
-        self.permutations[self.DBR] = dbl_c 
+        self.permutations[self.UBL] = ubr_c
+        self.permutations[self.DBL] = ubl_c
+        self.permutations[self.DBR] = dbl_c
         #assign them their new orientations
         self.orientations[self.UBR] = (dbr_o + 2) % 3
         self.orientations[self.UBL] = (ubr_o + 1) % 3
         self.orientations[self.DBL] = (ubl_o + 2) % 3
         self.orientations[self.DBR] = (dbl_o + 1) % 3
-    
+
     def _B_prime(self):
         #save the corner and its orientation for each location that is affected by this cycle.
         ubr_c = self.permutations[self.UBR]
@@ -203,11 +202,11 @@ class CubeState:
         dbr_c = self.permutations[self.DBR]
         ubr_o = self.orientations[self.UBR]
         ubl_o = self.orientations[self.UBL]
-        dbl_o = self.orientations[self.DBL] 
+        dbl_o = self.orientations[self.DBL]
         dbr_o = self.orientations[self.DBR]
         #assign them their new location
         self.permutations[self.UBR] = ubl_c
-        self.permutations[self.UBL] = dbl_c 
+        self.permutations[self.UBL] = dbl_c
         self.permutations[self.DBL] = dbr_c
         self.permutations[self.DBR] = ubr_c
         #assign them their new orientations

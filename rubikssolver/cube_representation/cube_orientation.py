@@ -1,14 +1,14 @@
-from cube_representation import constants
+from . import constants
 
 class CubeOrientation:
     """Tracks how the state's frame is rotated relative to the frontend's.
 
     Attributes:
-        mapping (dict[str, str]): frontend face -> state face
+        mapping (dict[str, str]): current map from frontend face -> state face
     """
 
     def __init__(self):
-        """Starts with the identity mapping."""
+        """Initializes with the identity mapping."""
         self.mapping = {'R': 'R', 'L': 'L', 'U': 'U', 'D': 'D', 'B': 'B', 'F': 'F'}
 
     def translate(self, move):
@@ -31,7 +31,7 @@ class CubeOrientation:
         #put through the map, append prime if needed
         translated_move = self.mapping[face] + prime
 
-        #update the mapping and return move 
+        #update the mapping and return move
         self._update(translated_move)
         return translated_move
 
@@ -39,7 +39,7 @@ class CubeOrientation:
         """
         Updates the mapping after a move is applied to the state.
 
-        Only UFR moves touching the fixed corner cause a hidden rotation. 
+        Only UFR moves touching the fixed corner cause a hidden rotation.
         DBL moves leave the mapping unchanged.
 
         Args:
@@ -51,27 +51,27 @@ class CubeOrientation:
         if face == 'D' or face == 'B' or face == 'L': return
 
         #otherwise, compose the mapping
-        match translated_move: 
-            case "U": 
+        match translated_move:
+            case "U":
                 self._compose(constants.U_MAP)
             case "U'":
                 self._compose(constants.U_INV_MAP)
-            case "F": 
+            case "F":
                 self._compose(constants.F_MAP)
             case "F'":
                 self._compose(constants.F_INV_MAP)
-            case "R": 
+            case "R":
                 self._compose(constants.R_MAP)
-            case "R'": 
+            case "R'":
                 self._compose(constants.R_INV_MAP)
-            case _: 
+            case _:
                 print("not a valid move.")
 
     def _compose(self, rotation):
         """
         Applies a rotation map to every value in the current mapping.
 
-        Args: 
-            rotation (dict): The specified rotation map. 
+        Args:
+            rotation (dict): The specified rotation map.
         """
         self.mapping = {f: rotation[s] for f, s in self.mapping.items()}

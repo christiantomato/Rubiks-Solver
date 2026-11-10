@@ -1,18 +1,15 @@
+"""
+The entry point for the program.
+"""
+
 #(audio is just breaking everything)
 from panda3d.core import loadPrcFileData
 loadPrcFileData("", "audio-library-name null")
 
 from ursina import *
-from cube_interface.cube import Cube
-from cube_representation.cube_state import CubeState
-from cube_representation.cube_orientation import CubeOrientation
-import cube_interface.constants as interface_constants
-import cube_representation.constants as representation_constants
-
-#init our frontend cube, cube state, and orientation tracker
-cube = Cube()
-state = CubeState()
-orientation = CubeOrientation()
+from rubikssolver import Cube, CubeState, CubeOrientation
+import rubikssolver.cube_interface.constants as interface_constants
+import rubikssolver.cube_representation.constants as representation_constants
 
 def apply_move(move, speed):
     """
@@ -61,7 +58,6 @@ def input(key):
         move = interface_constants.KEYS[key] + ("'" if shift else "")
         apply_move(move, interface_constants.NORMAL_SPEED)
 
-
 #guard so code only runs when main running
 if __name__ == "__main__":
 
@@ -69,6 +65,10 @@ if __name__ == "__main__":
     app = Ursina()
     EditorCamera()
 
+    #initialize frontend cube, state, and orientation
+    cube = Cube()
+    state = CubeState()
+    orientation = CubeOrientation()
+
     #run
     app.run()
-    
